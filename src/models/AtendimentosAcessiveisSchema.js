@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const AtendimentosAcessiveis = new mongoose.Schema({
+const AtendimentosAcessiveisSchema = new mongoose.Schema({
     id: {
         type: mongoose.Types.ObjectId,
         default: mongoose.Types.ObjectId
@@ -53,4 +53,4 @@ const AtendimentosAcessiveis = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-module.exports = mongoose.model("atendimentos-acessiveis", AtendimentosAcessiveis)
+module.exports = mongoose.model("atendimentos-acessiveis", AtendimentosAcessiveisSchema)
