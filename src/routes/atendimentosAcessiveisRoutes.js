@@ -8,8 +8,8 @@ router.get("/buscar/:id", controller.buscarAtendimentoPorId)
 
 router.post("/cadastrar", controller.cadastrarAtendimento)
 
-router.delete("/deletar/:id", controller.deletarAtendimento)
+router.delete("/deletar/:id", controller.deletarAtendimentoPorId)
 
-router.patch("/atualizar/:id", controller.atualizarAtendimento)
+router.put("/atualizar/:id", controller.atualizarAtendimentoPorId)
 
 module.exports = router
