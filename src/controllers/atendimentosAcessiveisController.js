@@ -103,39 +103,31 @@ const atualizarAtendimentoPorId = async(req, res) => {
     const { id } = req.params
 
     try {
-        const { id } = req.params
         const { nome, telefone, endereco, tipo_de_servico } = req.body
+        
 
+        const buscarAtendimento = await AtendimentosAcessiveisSchema.findById(id)
 
-        const atendimento = await AtendimentosAcessiveisSchema.findById(id)
-
-        if(!atendimento) {
+        if(!buscarAtendimento) {
             return res.status(404).json({
                 message: "Serviço de atendimento psicológico não encontrado"
             })
         }
 
-        atendimento.nome = nome || atendimento.nome
-        atendimento.telefone = telefone || atendimento.telefone
-        atendimento.endereco.cep = endereco.cep || atendimento.endereco.cep
-        atendimento.endereco.rua = endereco.rua || atendimento.endereco.rua
-        atendimento.endereco.numero = endereco.numero || atendimento.endereco.numero
-        atendimento.endereco.complemento = endereco.complemento || atendimento.endereco.complemento
-        atendimento.endereco.referencia = endereco.referencia || atendimento.endereco.referencia
-        atendimento.endereco.estado = endereco.estado || atendimento.endereco.estado
-        atendimento.endereco.cidade = endereco.cidade || atendimento.endereco.cidade
-        atendimento.endereco.bairro = endereco.bairro || atendimento.endereco.bairro
-        atendimento.tipo_de_servico = tipo_de_servico || atendimento.tipo_de_servico
+        buscarAtendimento.nome = nome || buscarAtendimento.nome
+        buscarAtendimento.telefone = telefone || buscarAtendimento.telefone
+        buscarAtendimento.endereco = endereco || buscarAtendimento.endereco
+        buscarAtendimento.tipo_de_servico = tipo_de_servico || buscarAtendimento.tipo_de_servico
         
 
-        const atendimentoAtualizado = await atendimento.save()
+        const atendimentoAtualizado = await buscarAtendimento.save()
 
         res.status(200).json({
-            mensagem: "Serviço atendimento psicológico atualizado!",
+            mensagem: "Serviço de atendimento psicológico atualizado!",
             atendimentoAtualizado
         })
     } catch (error) {
-        res.status(400).json({
+        res.status(500).json({
             mensagem: error.message
         })
     }
